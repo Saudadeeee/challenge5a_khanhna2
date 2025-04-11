@@ -3,7 +3,7 @@ $servername = "db";
 $username = "root";
 $password = "1";
 $dbname = "challenge5a";
-$port = 3306;
+$port = 3333;
 
 try {
     $conn = new mysqli($servername, $username, $password, $dbname, $port);
@@ -16,7 +16,7 @@ try {
     
 } catch (Exception $e) {
     try {
-        $conn = new mysqli('127.0.0.1', $username, $password, $dbname, 3307);
+        $conn = new mysqli('127.0.0.1', $username, $password, $dbname, 3334);
         
         if ($conn->connect_error) {
             throw new Exception("Connection failed: " . $conn->connect_error);

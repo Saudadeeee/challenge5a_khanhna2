@@ -23,7 +23,7 @@ services:
       MYSQL_ROOT_PASSWORD: 1
       MYSQL_DATABASE: challenge5a
     ports:
-      - "3307:3306"
+      - "3334:3333"
     volumes:
       - db-data:/var/lib/mysql
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
