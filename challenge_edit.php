@@ -14,7 +14,6 @@ if(!isset($_GET['challenge_id'])) {
 
 $chall_id = $_GET["challenge_id"];
 
-// Fetch existing challenge data
 $stmt = $conn->prepare("SELECT * FROM challenges WHERE id = ? AND teacher_id = ?");
 if ($stmt === false) {
     die("Prepare failed: " . $conn->error);
@@ -35,7 +34,6 @@ $stmt->close();
 if (isset($_POST['challenge_edit'])) {
     $challenge_hint = $conn->real_escape_string($_POST['challenge_hint']);
     
-    // Check if a new file was uploaded
     if (isset($_FILES['challenge_file']) && $_FILES['challenge_file']['error'] == 0) {
         $upload_dir = 'uploads/challenges/';
         if (!is_dir($upload_dir)) {
@@ -59,7 +57,7 @@ if (isset($_POST['challenge_edit'])) {
                 
                 if ($stmt->execute()) {
                     $message = "Challenge updated successfully!";
-                    // Refresh challenge data
+                    
                     $stmt = $conn->prepare("SELECT * FROM challenges WHERE id = ?");
                     $stmt->bind_param("i", $chall_id);
                     $stmt->execute();
@@ -74,7 +72,7 @@ if (isset($_POST['challenge_edit'])) {
             $message = "File upload failed.";
         }
     } else {
-        // Just update the hint
+     
         $sql = "UPDATE challenges SET challenge_hint=? WHERE id=? AND teacher_id=?";
         $stmt = $conn->prepare($sql);
         
@@ -85,7 +83,7 @@ if (isset($_POST['challenge_edit'])) {
             
             if ($stmt->execute()) {
                 $message = "Challenge hint updated successfully!";
-                // Refresh challenge data
+             
                 $stmt = $conn->prepare("SELECT * FROM challenges WHERE id = ?");
                 $stmt->bind_param("i", $chall_id);
                 $stmt->execute();

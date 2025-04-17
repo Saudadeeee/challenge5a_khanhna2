@@ -19,7 +19,6 @@ if (isset($_POST['upload_assignment'])) {
         if (!is_dir($upload_dir)) {
             mkdir($upload_dir, 0777, true);
         }
-        // Lấy phần mở rộng của file từ tên gốc
         $original_filename = basename($_FILES['assignment_file']['name']);
         $ext = strtolower(pathinfo($original_filename, PATHINFO_EXTENSION));
         // Chỉ cho phép file txt và pdf

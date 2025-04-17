@@ -65,9 +65,9 @@ $row = $res->fetch_assoc();
 <head>
     <meta charset="UTF-8">
     <title>Teacher - Edit Student</title>
-    <!-- Liên kết tới file CSS chung -->
+   
     <link rel="stylesheet" href="public/style.css">
-    <!-- CSS riêng cho trang teacher_edit_student -->
+    
     <style>
         .edit-form {
             max-width: 500px;

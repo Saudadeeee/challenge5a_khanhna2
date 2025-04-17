@@ -12,10 +12,7 @@ if ($user['role'] != 'teacher') {
     die("Truy cập bị từ chối!");
 }
 
-// Xử lý thêm challenge
 $message = '';
-
-// Xử lý xóa challenge
 if (isset($_GET['delete_id'])) {
     $challenge_id = (int)$_GET['delete_id'];
     $sql = "DELETE FROM challenges WHERE id = $challenge_id AND teacher_id = {$user['id']}";

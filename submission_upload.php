@@ -2,7 +2,6 @@
 session_start();
 include('config.php');
 
-// Chỉ sinh viên mới được truy cập
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] != 'student') {
     die("Access denied.");
 }
@@ -11,11 +10,8 @@ $assignment_id = intval($_GET['assignment_id']);
 $message = '';
 
 if (isset($_POST['submit_assignment'])) {
-    // Lấy assignment_id từ GET, vì URL chứa ?assignment_id=3
     $assignment_id = intval($_GET['assignment_id']); 
     $student_id = intval($_SESSION['user']['id']);
-
-    // Kiểm tra hạn nộp của bài tập
     $stmt = $conn->prepare("SELECT deadline FROM assignments WHERE id = ?");
     if ($stmt === false) {
         $message = "Prepare failed: " . $conn->error;
@@ -36,8 +32,6 @@ if (isset($_POST['submit_assignment'])) {
         }
         $stmt->close();
     }
-
-    // Nếu deadline chưa qua, tiếp tục xử lý upload file
     if (empty($message)) {
         if (isset($_FILES['submission_file']) && $_FILES['submission_file']['error'] == 0) {
             $upload_dir = 'uploads/submissions/';
@@ -64,12 +58,12 @@ if (isset($_POST['submit_assignment'])) {
             if (!in_array($ext, $allowed_ext)) {
                 $message = "Chỉ cho phép upload file định dạng txt hoặc pdf.";
             } else {
-                // Đổi tên file để đảm bảo tính duy nhất
+             
                 $new_filename = uniqid() . '.' . $ext;
                 $target = $upload_dir . $new_filename;
                 
                 if (move_uploaded_file($_FILES['submission_file']['tmp_name'], $target)) {
-                    // Sử dụng prepared statement để chèn dữ liệu an toàn
+                  
                     $stmt = $conn->prepare("INSERT INTO submissions (assignment_id, student_id, file_path) VALUES (?, ?, ?)");
                     if ($stmt === false) {
                         $message = "Prepare failed: " . $conn->error;
@@ -99,9 +93,9 @@ if (isset($_POST['submit_assignment'])) {
 <head>
     <meta charset="UTF-8">
     <title>Nộp Bài</title>
-    <!-- Liên kết tới file CSS chung -->
+
     <link rel="stylesheet" href="public/style.css">
-    <!-- CSS riêng cho trang submission_upload -->
+
     <style>
         .submission-form {
             max-width: 600px;

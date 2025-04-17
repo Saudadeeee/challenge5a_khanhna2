@@ -35,7 +35,6 @@ if (isset($_POST['submit_answer'])) {
     $submitted_answer = trim($_POST['answer']);
     $is_correct = ($submitted_answer == $correct_answer) ? 1 : 0;
     
-    // Use prepared statement to prevent SQL injection
     $stmt = $conn->prepare("INSERT INTO challenge_attempts (challenge_id, student_id, submitted_answer, is_correct) VALUES (?, ?, ?, ?)");
     
     if ($stmt === false) {

@@ -34,7 +34,6 @@ $user = $_SESSION['user'];
       <?php if ($user['role'] == 'student'): ?>
         <h2>Các bài tập</h2>
         <?php
-          // Lấy ID sinh viên
           $student_id = $user['id'];
 
           // Lấy danh sách bài tập, kèm theo xem sinh viên đã nộp bài chưa

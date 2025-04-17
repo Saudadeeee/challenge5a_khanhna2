@@ -29,7 +29,6 @@ $stmt->bind_param("i", $challenge_id);
 $stmt->execute();
 $result = $stmt->get_result();
 
-// Nếu không có submission nào cho challenge này
 if ($result->num_rows == 0) {
     $message = "Chưa có bài nộp nào cho challenge này.";
 }

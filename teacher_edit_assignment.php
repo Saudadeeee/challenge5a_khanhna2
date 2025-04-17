@@ -10,7 +10,6 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] != 'teacher') {
 $message = '';
 $teacher_id = $_SESSION['user']['id'];
 
-// Lấy assignment_id từ GET
 if (!isset($_GET['assignment_id'])) {
     die("Assignment ID is required.");
 }
@@ -28,15 +27,13 @@ if ($result && $result->num_rows > 0) {
 
 // Xử lý khi form được submit
 if (isset($_POST['update_assignment'])) {
-    // Lấy dữ liệu đã được cập nhật
+  
     $title = $conn->real_escape_string($_POST['title']);
     $description = $conn->real_escape_string($_POST['description']);
     $deadline = $_POST['deadline'];
     
-    // Khởi tạo file_path ban đầu là file cũ
     $file_path = $assignment['file_path'];
     
-    // Nếu giáo viên upload file mới
     if (isset($_FILES['assignment_file']) && $_FILES['assignment_file']['error'] == 0) {
         $upload_dir = 'uploads/assignments/';
         if (!is_dir($upload_dir)) {
@@ -51,10 +48,7 @@ if (isset($_POST['update_assignment'])) {
         if (!in_array($ext, $allowed_ext)) {
             $message = "Chỉ cho phép upload file txt hoặc pdf.";
         } else {
-            // (Tùy chọn) Xóa file cũ nếu cần, ví dụ:
-            // if(file_exists($file_path)) { unlink($file_path); }
             
-            // Đổi tên file mới theo UID để đảm bảo tính duy nhất
             $new_filename = uniqid() . '.' . $ext;
             $target = $upload_dir . $new_filename;
             if (move_uploaded_file($_FILES['assignment_file']['tmp_name'], $target)) {
@@ -65,14 +59,13 @@ if (isset($_POST['update_assignment'])) {
         }
     }
     
-    // Nếu không có lỗi từ quá trình upload file
     if (empty($message)) {
         $sql_update = "UPDATE assignments 
                        SET title = '$title', description = '$description', file_path = '$file_path', deadline = '$deadline' 
                        WHERE id = $assignment_id AND teacher_id = $teacher_id";
         if ($conn->query($sql_update)) {
             $message = "Assignment updated successfully!";
-            // Reload assignment details
+            
             $result = $conn->query("SELECT * FROM assignments WHERE id = $assignment_id AND teacher_id = $teacher_id LIMIT 1");
             if ($result && $result->num_rows > 0) {
                 $assignment = $result->fetch_assoc();

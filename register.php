@@ -2,7 +2,6 @@
 session_start();
 include('config.php');
 
-// Redirect to index if already logged in
 if (isset($_SESSION['user'])) {
     header('Location: index.php');
     exit;
@@ -18,15 +17,14 @@ if (isset($_POST['register'])) {
     $full_name = $conn->real_escape_string($_POST['full_name']);
     $email = $conn->real_escape_string($_POST['email']);
     $phone = $conn->real_escape_string($_POST['phone']);
-    $role = 'student'; // Default role for new registrations
+    $role = 'student'; 
     
-    // Validation
     if (empty($username) || empty($password) || empty($confirm_password) || empty($full_name)) {
         $message = "Vui lòng điền đầy đủ thông tin bắt buộc.";
     } elseif ($password !== $confirm_password) {
         $message = "Mật khẩu xác nhận không khớp.";
     } else {
-        // Check if username already exists
+       
         $sql_check = "SELECT id FROM users WHERE username = '$username'";
         $result_check = $conn->query($sql_check);
         

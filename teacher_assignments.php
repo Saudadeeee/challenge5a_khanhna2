@@ -50,7 +50,7 @@ $result = $conn->query($sql);
             background: #f2f2f2;
         }
         .action-cell {
-            white-space: nowrap; /* Để nút không bị xuống dòng */
+            white-space: nowrap; 
         }
         .action-cell form {
             display: inline-block;
@@ -83,7 +83,6 @@ $result = $conn->query($sql);
         </nav>
     </header>
     
-    <!-- Thông báo -->
     <?php if (!empty($message)): ?>
         <div class="message"><?php echo htmlspecialchars($message); ?></div>
     <?php endif; ?>
@@ -115,12 +114,12 @@ $result = $conn->query($sql);
                         <?php endif; ?>
                     </td>
                     <td class="action-cell">
-                        <!-- Nút Sửa -->
+                        
                         <a class="button" 
                            href="teacher_edit_assignment.php?assignment_id=<?php echo $row['id']; ?>">
                            Sửa
                         </a>
-                        <!-- Nút Xóa (form POST) -->
+                        
                         <form method="post" 
                               onsubmit="return confirm('Bạn có chắc chắn muốn xóa bài tập này?');">
                             <input type="hidden" name="assignment_id" value="<?php echo $row['id']; ?>">
