@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: prog5_web
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+    networks:
+      - app-network
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+    restart: always
+
+  db:
+    image: mysql:5.7
+    container_name: prog5_db
+    environment:
+      MYSQL_ROOT_PASSWORD: 1
+      MYSQL_DATABASE: challenge5a
+    ports:
+      - "3334:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - app-network
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  db-data:
+    driver: local
