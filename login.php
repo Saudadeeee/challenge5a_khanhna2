@@ -22,11 +22,8 @@ if (isset($_POST['login'])) {
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
-        
-        // The issue is here - in your init.sql the passwords might be stored directly
-        // without proper hashing or using a different format
-        // Let's try both password_verify and direct comparison
-        $is_verified = password_verify($password, $user['password']) || $password === '1'; // Add fallback for testing
+
+        $is_verified = password_verify($password, $user['password']); 
         
         if ($is_verified) {
             $_SESSION['user'] = [

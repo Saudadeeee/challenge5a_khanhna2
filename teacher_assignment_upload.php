@@ -7,6 +7,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] != 'teacher') {
 }
 
 $message = '';
+$message_type = ''; // Add variable to track message type
 
 if (isset($_POST['upload_assignment'])) {
     $teacher_id = $_SESSION['user']['id'];
@@ -26,6 +27,7 @@ if (isset($_POST['upload_assignment'])) {
         
         if (!in_array($ext, $allowed_ext)) {
             $message = "Chỉ cho phép upload file txt hoặc pdf.";
+            $message_type = 'error';
         } else {
             // Đổi tên file thành dạng UID
             $new_filename = uniqid() . '.' . $ext;
@@ -36,15 +38,19 @@ if (isset($_POST['upload_assignment'])) {
     
                 if ($conn->query($sql) === TRUE) {
                     $message = "Assignment uploaded successfully!";
+                    $message_type = 'success';
                 } else {
                     $message = "Error: " . $conn->error;
+                    $message_type = 'error';
                 }
             } else {
                 $message = "File upload failed.";
+                $message_type = 'error';
             }
         }
     } else {
         $message = "Please select a file to upload.";
+        $message_type = 'error';
     }
 }
 
@@ -56,6 +62,10 @@ if (isset($_POST['upload_assignment'])) {
     <title>Upload Assignment</title>
     <!-- Liên kết CSS chung -->
     <link rel="stylesheet" href="public/style.css">
+    <style>
+        .message.success { color: green; }
+        .message.error { color: red; }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -75,7 +85,7 @@ if (isset($_POST['upload_assignment'])) {
     <div class="content">
         <h2>Giao bài tập mới</h2>
         <?php if (!empty($message)): ?>
-            <div class="message">
+            <div class="message <?php echo $message_type; ?>">
                 <?php echo htmlspecialchars($message); ?>
             </div>
         <?php endif; ?>

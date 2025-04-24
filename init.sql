@@ -68,16 +68,16 @@ CREATE TABLE challenge_attempts (
 );
 
 INSERT INTO users (username, password, full_name, email, phone, role, avatar) VALUES 
-('teacher1', '$2y$10$6Q5p/dlW.8twTRdB7d8w8uXCBURnKftN.KJmjZI2Z/DGtT6SgXmPi', 'Teacher One', 'teacher1@example.com', '0123456789', 'teacher', NULL),
-('teacher2', '$2y$10$6Q5p/dlW.8twTRdB7d8w8uXCBURnKftN.KJmjZI2Z/DGtT6SgXmPi', 'Teacher Two', 'teacher2@example.com', '0123456788', 'teacher', NULL),
-('teacher3', '$2y$10$6Q5p/dlW.8twTRdB7d8w8uXCBURnKftN.KJmjZI2Z/DGtT6SgXmPi', 'Teacher Three', 'teacher3@example.com', '0123456787', 'teacher', NULL),
-('teacher4', '$2y$10$6Q5p/dlW.8twTRdB7d8w8uXCBURnKftN.KJmjZI2Z/DGtT6SgXmPi', 'Teacher Four', 'teacher4@example.com', '0123456786', 'teacher', NULL),
-('teacher5', '$2y$10$6Q5p/dlW.8twTRdB7d8w8uXCBURnKftN.KJmjZI2Z/DGtT6SgXmPi', 'Teacher Five', 'teacher5@example.com', '0123456785', 'teacher', NULL),
-('student1', '$2y$10$6Q5p/dlW.8twTRdB7d8w8uXCBURnKftN.KJmjZI2Z/DGtT6SgXmPi', 'Student One', 'student1@example.com', '0987654321', 'student', NULL),
-('student2', '$2y$10$6Q5p/dlW.8twTRdB7d8w8uXCBURnKftN.KJmjZI2Z/DGtT6SgXmPi', 'Student Two', 'student2@example.com', '0987654322', 'student', NULL),
-('student3', '$2y$10$6Q5p/dlW.8twTRdB7d8w8uXCBURnKftN.KJmjZI2Z/DGtT6SgXmPi', 'Student Three', 'student3@example.com', '0987654323', 'student', NULL),
-('student4', '$2y$10$6Q5p/dlW.8twTRdB7d8w8uXCBURnKftN.KJmjZI2Z/DGtT6SgXmPi', 'Student Four', 'student4@example.com', '0987654324', 'student', NULL),
-('student5', '$2y$10$6Q5p/dlW.8twTRdB7d8w8uXCBURnKftN.KJmjZI2Z/DGtT6SgXmPi', 'Student Five', 'student5@example.com', '0987654325', 'student', NULL);
+('teacher1', '$2y$10$7vDHCiZn52AsIWpfELx3s.GYEN3eG2Fh9Lxm2Qot8jYF13h7af7uG', 'Teacher One', 'teacher1@example.com', '0123456789', 'teacher', NULL),
+('teacher2', '$2y$10$7vDHCiZn52AsIWpfELx3s.GYEN3eG2Fh9Lxm2Qot8jYF13h7af7uG', 'Teacher Two', 'teacher2@example.com', '0123456788', 'teacher', NULL),
+('teacher3', '$2y$10$7vDHCiZn52AsIWpfELx3s.GYEN3eG2Fh9Lxm2Qot8jYF13h7af7uG', 'Teacher Three', 'teacher3@example.com', '0123456787', 'teacher', NULL),
+('teacher4', '$2y$10$7vDHCiZn52AsIWpfELx3s.GYEN3eG2Fh9Lxm2Qot8jYF13h7af7uG', 'Teacher Four', 'teacher4@example.com', '0123456786', 'teacher', NULL),
+('teacher5', '$2y$10$PUVUXJNco8z82eW4mU2cNeZkK/TZsJ2J.0KsCM.9Dik7agfVb7Laa', 'Teacher Five', 'teacher5@example.com', '0123456785', 'teacher', NULL),
+('student1', '$2y$10$7vDHCiZn52AsIWpfELx3s.GYEN3eG2Fh9Lxm2Qot8jYF13h7af7uG', 'Student One', 'student1@example.com', '0987654321', 'student', NULL),
+('student2', '$2y$10$7vDHCiZn52AsIWpfELx3s.GYEN3eG2Fh9Lxm2Qot8jYF13h7af7uG', 'Student Two', 'student2@example.com', '0987654322', 'student', NULL),
+('student3', '$2y$10$PUVUXJNco8z82eW4mU2cNeZkK/TZsJ2J.0KsCM.9Dik7agfVb7Laa', 'Student Three', 'student3@example.com', '0987654323', 'student', NULL),
+('student4', '$2y$10$PUVUXJNco8z82eW4mU2cNeZkK/TZsJ2J.0KsCM.9Dik7agfVb7Laa', 'Student Four', 'student4@example.com', '0987654324', 'student', NULL),
+('student5', '$2y$10$PUVUXJNco8z82eW4mU2cNeZkK/TZsJ2J.0KsCM.9Dik7agfVb7Laa', 'Student Five', 'student5@example.com', '0987654325', 'student', NULL);
 
 INSERT INTO messages (sender_id, receiver_id, content) VALUES
 (1, 6, 'Hello, Student One!'),
